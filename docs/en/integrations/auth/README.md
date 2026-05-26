@@ -1,0 +1,27 @@
+# Auth Integration
+
+Auth uses NextAuth with OAuth providers such as Google and GitHub, plus framework-level login UI and anti-abuse hooks.
+
+## Use
+
+- Server Components use `await auth()` from `@/server/auth`.
+- Client Components use `useSession()` from `next-auth/react`.
+- Login UI uses `useLogin()` from `@/components/auth/use-login`.
+- Do not store sensitive auth data, JWTs, or session tokens in client state or local storage.
+
+## Configuration
+
+Common environment variables:
+
+- `NEXTAUTH_SECRET`
+- OAuth provider client IDs and secrets, such as Google or GitHub keys.
+- Optional anti-abuse or email settings when the login flow sends email.
+
+Update `src/env.js` and `.env.example` when adding auth-related configuration.
+
+## Extension Rules
+
+- Add new providers through the existing auth configuration boundary.
+- Keep session shape stable unless the caller updates all consumers.
+- Do not bypass framework login UI conventions for product pages.
+- If login touches Turnstile, rate limiting, IP, or disposable email checks, also read `docs/en/integrations/security/README.md`.
