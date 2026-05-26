@@ -123,10 +123,86 @@
   },
   "landing": {
     "hero": {
-      "titleLine1": "Build Your AI App",
-      "titleLine2": "In Record Time",
-      "subtitle": "A production-ready AI SaaS framework with auth, billing, payments, and AI chat built in.",
-      "subtitleAccent": "Focus on your core feature. We handle the rest."
+      "titleLine1": "你的 Web3",
+      "titleLine2": "投资钱包",
+      "subtitle": "多链资产管理、代币兑换、DeFi 理财与 DApp 发现，一站完成。",
+      "subtitleAccent": "",
+      "cta": "打开钱包",
+      "ctaSecondary": "探索 DApp"
+    },
+    "features": {
+      "multiChain": {
+        "title": "多链资产",
+        "description": "统一查看和管理 BTC、ETH、Solana 等多链资产。"
+      },
+      "earn": {
+        "title": "DeFi 理财",
+        "description": "发现跨链质押、流动性挖矿与收益聚合机会。"
+      },
+      "swap": {
+        "title": "内置兑换",
+        "description": "聚合 DEX 流动性，每笔交易获取最优价格。"
+      },
+      "discover": {
+        "title": "DApp 中心",
+        "description": "一键访问热门 DeFi、NFT 与 Web3 应用。"
+      }
+    }
+  },
+  "product": {
+    "nav": {
+      "home": "主页",
+      "earn": "理财",
+      "swap": "交易",
+      "discover": "发现"
+    },
+    "wallet": {
+      "connectEvm": "连接 MetaMask",
+      "connectSol": "连接 Phantom",
+      "connectedEvm": "已关联以太坊钱包",
+      "connectedSol": "已关联 Solana 钱包",
+      "connectFailed": "钱包连接失败"
+    },
+    "portfolio": {
+      "title": "资产总览",
+      "subtitle": "多链投资组合一览",
+      "signInPrompt": "登录后即可查看资产并连接钱包。",
+      "signIn": "登录",
+      "totalBalance": "总资产",
+      "demoData": "演示数据 — 配置 RPC API Key 后可显示实时余额。",
+      "connectedWallets": "已连接钱包",
+      "assets": "持仓资产",
+      "noAssets": "连接钱包后即可查看资产。"
+    },
+    "swap": {
+      "title": "兑换",
+      "subtitle": "通过 DEX 聚合器获取最优兑换价格",
+      "from": "支付",
+      "to": "获得",
+      "fee": "平台手续费",
+      "aggregator": "聚合器",
+      "getQuote": "获取报价",
+      "swap": "确认兑换",
+      "swapSuccess": "兑换已记录",
+      "swapFailed": "兑换失败",
+      "disclaimer": "请在钱包中签名交易。非托管模式 — 私钥不会离开你的设备。"
+    },
+    "earn": {
+      "title": "理财",
+      "subtitle": "跨链 DeFi 收益机会",
+      "myPositions": "已追踪仓位",
+      "openProtocol": "打开协议",
+      "trackPosition": "追踪仓位",
+      "amountPlaceholder": "存入金额",
+      "confirmTrack": "保存仓位",
+      "positionOpened": "仓位已记录"
+    },
+    "discover": {
+      "title": "发现",
+      "subtitle": "探索热门 Web3 应用",
+      "featured": "精选推荐",
+      "promoted": "推广",
+      "openDapp": "打开 DApp"
     }
   },
   "account": {

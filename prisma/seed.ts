@@ -13,6 +13,7 @@ import { seedVibeCreatorAgent } from './seed-vibe-creator-agent';
 import { seedProducts } from './seed-products';
 import { seedPasswordLoginTestUsers } from './seed-password-login-users';
 import { seedTouchScenes } from './seed-touch-scenes';
+import { seedVeloWallet } from './seed-velowallet';
 
 const prisma = new PrismaClient();
 const isTemplateBuild = process.env.TEMPLATE_BUILD === '1';
@@ -72,12 +73,18 @@ async function main() {
   await seedTouchScenes();
   console.log('');
 
+  // 7. Seed VeloWallet product data (earn products, DApps)
+  console.log('💰 Step 7: Seeding VeloWallet product data...');
+  await seedVeloWallet(prisma);
+  console.log('');
+
   console.log('✨ Database seeding completed successfully!\n');
   if (!isTemplateBuild) {
     console.log('🎉 You now have:');
     console.log('   - System Agents for AI chat');
     console.log('   - Products (subscriptions + credit packages)');
     console.log('   - Touch Scenes (notification templates)');
+    console.log('   - VeloWallet earn products & DApp listings');
     console.log('\n💡 Users can now install agents and purchase subscriptions!\n');
   }
 }

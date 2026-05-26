@@ -8,6 +8,11 @@ import { adminRouter } from "@/server/admin/routers";
 import { accountRouter } from "@/server/api/routers/account";
 import { notificationRouter } from "@/server/api/routers/notification";
 import { exampleRouter } from "@/modules/example/server/router";
+import { walletRouter } from "@/modules/wallet/server/router";
+import { portfolioRouter } from "@/modules/portfolio/server/router";
+import { swapRouter } from "@/modules/swap/server/router";
+import { earnRouter } from "@/modules/earn/server/router";
+import { discoverRouter } from "@/modules/discover/server/router";
 import { agentRouter } from "@/server/api/routers/agent";
 import { userAgentRouter } from "@/server/api/routers/user-agent";
 import { conversationRouter } from "@/server/api/routers/conversation";
@@ -38,6 +43,13 @@ export const appRouter = createTRPCRouter({
   notification: notificationRouter,
   account: accountRouter,
   example: exampleRouter,
+
+  // VeloWallet product modules
+  wallet: walletRouter,
+  portfolio: portfolioRouter,
+  swap: swapRouter,
+  earn: earnRouter,
+  discover: discoverRouter,
 
   // AI Chat module
   agent: agentRouter,

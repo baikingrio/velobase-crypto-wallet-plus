@@ -88,6 +88,17 @@ export const env = createEnv({
     TURNSTILE_SECRET_KEY: z.string().optional(),
     // Velobase Billing
     VELOBASE_API_KEY: z.string().optional(),
+    // VeloWallet / Web3
+    ALCHEMY_API_KEY: z.string().optional(),
+    HELIUS_API_KEY: z.string().optional(),
+    ONEINCH_API_KEY: z.string().optional(),
+    COINGECKO_API_KEY: z.string().optional(),
+    JUPITER_API_URL: z.string().url().optional(),
+    MEMPOOL_API_URL: z.string().url().optional(),
+    SWAP_FEE_BPS: z
+      .string()
+      .optional()
+      .transform((val) => (val ? parseInt(val, 10) : 30)),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -104,6 +115,7 @@ export const env = createEnv({
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().optional(),
     NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string().optional(),
     NEXT_PUBLIC_TELEGRAM_BOT_USERNAME: z.string().optional(),
+    NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID: z.string().optional(),
   },
 
   /**
@@ -178,12 +190,21 @@ export const env = createEnv({
     TELEGRAM_WEBHOOK_SECRET: process.env.TELEGRAM_WEBHOOK_SECRET,
     TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
     VELOBASE_API_KEY: process.env.VELOBASE_API_KEY,
+    ALCHEMY_API_KEY: process.env.ALCHEMY_API_KEY,
+    HELIUS_API_KEY: process.env.HELIUS_API_KEY,
+    ONEINCH_API_KEY: process.env.ONEINCH_API_KEY,
+    COINGECKO_API_KEY: process.env.COINGECKO_API_KEY,
+    JUPITER_API_URL: process.env.JUPITER_API_URL,
+    MEMPOOL_API_URL: process.env.MEMPOOL_API_URL,
+    SWAP_FEE_BPS: process.env.SWAP_FEE_BPS,
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_APP_ENV: process.env.NEXT_PUBLIC_APP_ENV,
     NEXT_PUBLIC_DISABLE_TEST_LOGIN: process.env.NEXT_PUBLIC_DISABLE_TEST_LOGIN,
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
     NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
     NEXT_PUBLIC_TELEGRAM_BOT_USERNAME: process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME,
+    NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID:
+      process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

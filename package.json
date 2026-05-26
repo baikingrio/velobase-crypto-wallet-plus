@@ -23,6 +23,7 @@
     "preview": "pnpm build && pnpm start",
     "start": "node .next/standalone/server.js",
     "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test src/**/*.test.ts",
     "api:dev": "tsx watch src/api/index.ts",
     "api:prod": "node --import tsx src/api/index.ts",
     "worker:dev": "tsx watch src/workers/index.ts",

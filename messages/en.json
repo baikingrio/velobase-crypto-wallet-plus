@@ -123,10 +123,86 @@
   },
   "landing": {
     "hero": {
-      "titleLine1": "Build Your AI App",
-      "titleLine2": "In Record Time",
-      "subtitle": "A production-ready AI SaaS framework with auth, billing, payments, and AI chat built in.",
-      "subtitleAccent": "Focus on your core feature. We handle the rest."
+      "titleLine1": "Your Web3 Investment",
+      "titleLine2": "Wallet",
+      "subtitle": "Manage multi-chain assets, swap tokens, earn DeFi yields, and discover DApps — all in one place.",
+      "subtitleAccent": "",
+      "cta": "Open Wallet",
+      "ctaSecondary": "Explore DApps"
+    },
+    "features": {
+      "multiChain": {
+        "title": "Multi-Chain Assets",
+        "description": "View and manage BTC, ETH, Solana and more from a unified portfolio."
+      },
+      "earn": {
+        "title": "DeFi Earn",
+        "description": "Discover staking, liquidity pools, and yield opportunities across chains."
+      },
+      "swap": {
+        "title": "Built-in Swap",
+        "description": "Aggregate DEX liquidity for optimal prices on every trade."
+      },
+      "discover": {
+        "title": "DApp Hub",
+        "description": "One-tap access to trending DeFi, NFT, and Web3 applications."
+      }
+    }
+  },
+  "product": {
+    "nav": {
+      "home": "Home",
+      "earn": "Earn",
+      "swap": "Swap",
+      "discover": "Discover"
+    },
+    "wallet": {
+      "connectEvm": "Connect MetaMask",
+      "connectSol": "Connect Phantom",
+      "connectedEvm": "Ethereum wallet linked",
+      "connectedSol": "Solana wallet linked",
+      "connectFailed": "Failed to connect wallet"
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "subtitle": "Your multi-chain asset overview",
+      "signInPrompt": "Sign in to view your portfolio and connect wallets.",
+      "signIn": "Sign in",
+      "totalBalance": "Total balance",
+      "demoData": "Demo data — configure RPC API keys for live balances.",
+      "connectedWallets": "Connected wallets",
+      "assets": "Assets",
+      "noAssets": "Connect a wallet to see your assets."
+    },
+    "swap": {
+      "title": "Swap",
+      "subtitle": "Best-price token exchange via DEX aggregators",
+      "from": "From",
+      "to": "To",
+      "fee": "Platform fee",
+      "aggregator": "Aggregator",
+      "getQuote": "Get quote",
+      "swap": "Swap",
+      "swapSuccess": "Swap recorded successfully",
+      "swapFailed": "Swap failed",
+      "disclaimer": "Sign transactions in your wallet. Non-custodial — keys never leave your device."
+    },
+    "earn": {
+      "title": "Earn",
+      "subtitle": "DeFi yield opportunities across chains",
+      "myPositions": "Tracked positions",
+      "openProtocol": "Open protocol",
+      "trackPosition": "Track position",
+      "amountPlaceholder": "Deposited amount",
+      "confirmTrack": "Save position",
+      "positionOpened": "Position tracked"
+    },
+    "discover": {
+      "title": "Discover",
+      "subtitle": "Explore trending Web3 applications",
+      "featured": "Featured",
+      "promoted": "Promoted",
+      "openDapp": "Open DApp"
     }
   },
   "account": {

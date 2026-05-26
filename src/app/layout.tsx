@@ -35,8 +35,9 @@ import { ServiceNoticeBanner } from "@/components/layout/service-notice-banner";
 const CONSENT_COOKIE = "app_cookie_consent";
 
 export const metadata: Metadata = {
-  title: "AI SaaS Framework",
-  description: "Production-ready AI SaaS framework with auth, billing, payments, and AI chat built in.",
+  title: "VeloWallet — Web3 Investment Wallet",
+  description:
+    "Multi-chain crypto wallet for Web3 investing: portfolio, DeFi earn, DEX swap, and DApp discovery.",
   icons: [
     { rel: "icon", url: "/favicon.svg", type: "image/svg+xml" },
   ],

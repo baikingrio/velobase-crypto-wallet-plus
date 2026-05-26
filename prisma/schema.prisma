@@ -246,6 +246,10 @@ model User {
   touchSchedules            TouchSchedule[]
   supportTickets            SupportTicket[]
   notificationPreferences   UserNotificationPreference[]
+  walletConnections         WalletConnection[]
+  swapOrders                SwapOrder[]
+  earnPositions             EarnPosition[]
+  platformRevenues          PlatformRevenue[]
   @@index([createdAt])
   @@index([deviceKeyAtSignup, createdAt])
   @@index([utmSource])
@@ -1456,4 +1460,190 @@ model SupportSyncCursor {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("support_sync_cursors")
+}
+
+// ============================================================================
+// VeloWallet — Web3 investment wallet product models
+// ============================================================================
+
+enum WalletChain {
+  ETHEREUM
+  SOLANA
+  BITCOIN
+}
+
+enum WalletProvider {
+  METAMASK
+  WALLETCONNECT
+  PHANTOM
+  OTHER
+}
+
+model WalletConnection {
+  id          String         @id @default(cuid())
+  userId      String         @map("user_id")
+  address     String
+  chain       WalletChain
+  provider    WalletProvider @default(OTHER)
+  label       String?
+  isPrimary   Boolean        @default(false) @map("is_primary")
+  connectedAt DateTime       @default(now()) @map("connected_at")
+  createdAt   DateTime       @default(now()) @map("created_at")
+  updatedAt   DateTime       @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, address, chain])
+  @@index([userId])
+  @@map("wallet_connections")
+}
+
+enum SwapOrderStatus {
+  PENDING
+  SUBMITTED
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+model SwapOrder {
+  id         String          @id @default(cuid())
+  userId     String          @map("user_id")
+  chain      WalletChain
+  fromToken  String          @map("from_token")
+  toToken    String          @map("to_token")
+  fromAmount String          @map("from_amount")
+  toAmount   String?         @map("to_amount")
+  feeAmount  String?         @map("fee_amount")
+  feeBps     Int             @default(30) @map("fee_bps")
+  txHash     String?         @map("tx_hash")
+  aggregator String?
+  status     SwapOrderStatus @default(PENDING)
+  quoteData  Json?           @map("quote_data")
+  createdAt  DateTime        @default(now()) @map("created_at")
+  updatedAt  DateTime        @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([status])
+  @@map("swap_orders")
+}
+
+enum EarnProductType {
+  STAKING
+  LIQUIDITY
+  YIELD_AGGREGATOR
+}
+
+enum EarnRiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model EarnProduct {
+  id              String          @id @default(cuid())
+  name            String
+  protocol        String
+  chain           WalletChain
+  type            EarnProductType
+  apy             Float
+  tvl             String?
+  riskLevel       EarnRiskLevel   @default(MEDIUM) @map("risk_level")
+  contractAddress String?         @map("contract_address")
+  externalUrl     String          @map("external_url")
+  isActive        Boolean         @default(true) @map("is_active")
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime        @updatedAt @map("updated_at")
+
+  positions EarnPosition[]
+
+  @@index([chain, isActive])
+  @@index([type])
+  @@map("earn_products")
+}
+
+enum EarnPositionStatus {
+  ACTIVE
+  CLOSED
+}
+
+model EarnPosition {
+  id              String             @id @default(cuid())
+  userId          String             @map("user_id")
+  productId       String             @map("product_id")
+  depositedAmount String             @map("deposited_amount")
+  currentValue    String?            @map("current_value")
+  rewardsEarned   String             @default("0") @map("rewards_earned")
+  status          EarnPositionStatus @default(ACTIVE)
+  openedAt        DateTime           @default(now()) @map("opened_at")
+  closedAt        DateTime?          @map("closed_at")
+  createdAt       DateTime           @default(now()) @map("created_at")
+  updatedAt       DateTime           @updatedAt @map("updated_at")
+
+  user    User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product EarnProduct @relation(fields: [productId], references: [id])
+
+  @@index([userId, status])
+  @@index([productId])
+  @@map("earn_positions")
+}
+
+enum DAppCategory {
+  DEFI
+  NFT
+  GAMING
+  BRIDGE
+  OTHER
+}
+
+enum DAppPromotionTier {
+  NONE
+  BASIC
+  FEATURED
+}
+
+model DAppListing {
+  id            String            @id @default(cuid())
+  name          String
+  description   String            @db.Text
+  url           String
+  category      DAppCategory
+  chains        Json              @default("[]")
+  logoUrl       String?           @map("logo_url")
+  isPromoted    Boolean           @default(false) @map("is_promoted")
+  promotionTier DAppPromotionTier @default(NONE) @map("promotion_tier")
+  clickCount    Int               @default(0) @map("click_count")
+  isActive      Boolean           @default(true) @map("is_active")
+  createdAt     DateTime          @default(now()) @map("created_at")
+  updatedAt     DateTime          @updatedAt @map("updated_at")
+
+  @@index([category, isActive])
+  @@index([isPromoted, promotionTier])
+  @@map("dapp_listings")
+}
+
+enum PlatformRevenueType {
+  SWAP_FEE
+  EARN_FEE
+  DAPP_PROMOTION
+}
+
+model PlatformRevenue {
+  id         String              @id @default(cuid())
+  type       PlatformRevenueType
+  sourceId   String?             @map("source_id")
+  userId     String?             @map("user_id")
+  amount     String
+  currency   String              @default("USD")
+  chain      WalletChain?
+  recordedAt DateTime            @default(now()) @map("recorded_at")
+  createdAt  DateTime            @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([type, recordedAt])
+  @@index([userId])
+  @@map("platform_revenues")
 }
